@@ -1,0 +1,53 @@
+.contentWrap {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+
+  h3 {
+    margin-left: 1rem;
+  }
+
+  .albums {
+    width: 100%;
+    height: 100%;
+    margin: 0.3rem 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    .albumItem {
+      width: calc(33.33% - 0.625rem);
+      height: 10rem;
+      margin: 0.3125rem;
+      padding: 0.3rem 0.3rem;
+      background: rgb(132, 182, 159);
+      border: 1px solid rgb(92, 92, 212);
+      display: flex;
+      align-items: flex-end;
+
+      &:hover {
+        background: rgb(78, 141, 112);
+        cursor: pointer;
+      }
+    }
+  }
+  .backBtn {
+    width: calc(20% - 0.625rem);
+    height: 2rem;
+    margin: 0.3125rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background: rgb(65, 85, 121);
+    color: #fff;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      background: rgb(90, 106, 133);
+    }
+
+    &:active {
+      cursor: pointer;
+      background: rgb(65, 85, 121);
+    }
+  }
+}
