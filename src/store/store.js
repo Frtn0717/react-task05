@@ -7,6 +7,8 @@ const ADD_USER_TYPE = 'ADD_USER_TYPE';
 const ADD_ALBUMS_TYPE = 'ADD_ALBUM_TYPE';
 const ADD_PHOTOS_TYPE = 'ADD_PHOTO_TYPE';
 const ADD_ACTIVE_ALBUM = 'ADD_ACTIVE_ALBUM';
+const OPEN_MODAL = 'OPEN_MODAL';
+const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // Action creators
 export function addUser(payload) {
@@ -37,30 +39,19 @@ export function addPhotos(payload) {
   };
 }
 
-// Hardcoded user
-// const awesomeUser = {
-//   id: 1,
-//   name: 'Leanne Graham',
-//   username: 'Bret',
-//   email: 'Sincere@april.biz',
-//   address: {
-//     street: 'Kulas Light',
-//     suite: 'Apt. 556',
-//     city: 'Gwenborough',
-//     zipcode: '92998-3874',
-//     geo: {
-//       lat: '-37.3159',
-//       lng: '81.1496',
-//     },
-//   },
-//   phone: '1-770-736-8031 x56442',
-//   website: 'hildegard.org',
-//   company: {
-//     name: 'Romaguera-Crona',
-//     catchPhrase: 'Multi-layered client-server neural-net',
-//     bs: 'harness real-time e-markets',
-//   },
-// };
+export function openModal(payload) {
+  return {
+    type: OPEN_MODAL,
+    payload,
+  };
+}
+
+export function closeModal(payload) {
+  return {
+    type: CLOSE_MODAL,
+    payload,
+  };
+}
 
 // Init state
 const initialState = {
@@ -68,6 +59,7 @@ const initialState = {
   albums: [],
   activeAlbum: null,
   photos: [],
+  modal: false,
 };
 
 // Reducers
@@ -107,11 +99,23 @@ function photos(state = initialState.photos, action) {
   }
 }
 
+function modal(state = initialState.modal, action) {
+  switch (action.type) {
+    case OPEN_MODAL:
+      return action.payload;
+    case CLOSE_MODAL:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 export const allReducers = combineReducers({
   user,
   albums,
   activeAlbum,
   photos,
+  modal,
 });
 
 export const store = createStore(

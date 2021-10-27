@@ -1,0 +1,134 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+
+  .modalWrap {
+    width: 30vw;
+    height: 30vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    .modalHead {
+      width: calc(30vw - 2px);
+      height: calc(2rem + 1px);
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -300%);
+      background-color: rgb(66, 83, 114);
+      color: oldlace;
+      padding-left: 0.2rem;
+      z-index: 2;
+      border-bottom: 1px solid black;
+
+      h5 {
+        height: 2rem;
+        vertical-align: middle;
+        padding: 0.5rem;
+      }
+
+      .modalCloseBtn {
+        width: 1.9rem;
+        height: 1.9rem;
+        background-color: rgb(209, 88, 88);
+        background-image: url('https://cdn-icons-png.flaticon.com/128/860/860796.png');
+        background-size: 1.2rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(235, 117, 117);
+        }
+
+        &:active {
+          background-color: rgb(209, 88, 88);
+        }
+      }
+    }
+
+    .modalContent {
+      width: calc(30vw - 2px);
+      height: 10rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      background-color: rgb(136, 172, 240);
+      transform: translate(-50%, -42%);
+      z-index: 2;
+      padding: 2rem 1rem;
+
+      span {
+        font-size: 1.2rem;
+      }
+
+      input {
+        width: 24vw;
+        height: 1.5rem;
+        background-color: rgb(169, 201, 255);
+        border: none;
+        padding: 0 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      .modalContentError {
+        display: none;
+        margin: 2.5rem 6.5rem;
+        color: rgb(102, 102, 102);
+      }
+    }
+
+    .modalFoot {
+      width: calc(30vw - 2px);
+      height: 3rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      background-color: rgb(136, 172, 240);
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      transform: translate(-50%, 190%);
+      z-index: 2;
+
+      .cancelBtn,
+      .acceptBtn {
+        width: 4rem;
+        height: 2rem;
+        margin-left: 1rem;
+        font-weight: 700;
+        border: none;
+        background-color: rgb(66, 83, 114);
+        color: oldlace;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .cancelBtn:hover {
+        background-color: rgb(235, 117, 117);
+        color: oldlace;
+
+        &:active {
+          background-color: rgb(209, 88, 88);
+        }
+      }
+
+      .acceptBtn:hover {
+        background-color: rgb(115, 192, 108);
+        color: oldlace;
+
+        &:active {
+          background-color: rgb(105, 172, 99);
+        }
+      }
+    }
+  }
+}

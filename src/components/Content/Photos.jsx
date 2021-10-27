@@ -6,7 +6,6 @@ import { addActiveAlbum, addPhotos } from '../../store/store.js';
 
 const Photos = () => {
   const dispatch = useDispatch();
-
   const activeAlbum = useSelector(({ activeAlbum }) => activeAlbum);
   const photos = useSelector(({ photos }) => photos);
 
@@ -48,6 +47,8 @@ const Photos = () => {
   return (
     <section className={style.contentWrap}>
       <h3> {activeAlbum.title.toUpperCase()} </h3>
+
+      <button className={style.toEndBtn}>To end</button>
 
       <div className={style.photos}>
         {photos.map((photo) => {
