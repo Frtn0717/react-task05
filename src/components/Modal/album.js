@@ -1,26 +1,27 @@
 import React, { useCallback } from 'react';
-// import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './modal-styles.module.scss';
 import { closeModal, addAlbums } from '../../store/store';
 
-const ModalAlbum = () => {
+const Album = () => {
   const dispatch = useDispatch();
 
-  const isModalVisible = useSelector(({ modal }) => modal);
   const currentUser = useSelector(({ user }) => user[0]);
   const userAlbumsNumber = useSelector(({ albums }) => albums);
+  const photos = useSelector(({ photos }) => photos);
+
+  const isNewAlbumTitleEmpty = () => {
+    const title = document.getElementById('new-album-title').value.trim();
+    return title.length === 0;
+  };
 
   const cancel = () => {
     dispatch(closeModal(false));
-    console.log('Cancel has been clicked');
-    console.log(isModalVisible);
   };
 
-  const accept = () => {
-    const title = document.getElementById('new-album-title').value.trim();
+  const acceptAlbum = () => {
     const errorMessage = document.getElementById('error');
-    if (!title.length) {
+    if (isNewAlbumTitleEmpty()) {
       errorMessage.style.display = 'block';
     } else {
       dispatch(closeModal(false));
@@ -29,32 +30,30 @@ const ModalAlbum = () => {
 
   let currentAlbumsNumber = userAlbumsNumber.length + 1;
 
-  function makeKey() {
+  function makeNewAlbumId() {
     return () => {
       return currentAlbumsNumber++;
     };
   }
 
-  const currentAlbumId = makeKey();
+  const newAlbumId = makeNewAlbumId();
 
   const addItemToAlbum = useCallback(() => {
     const newAlbumTitle = document.getElementById('new-album-title').value;
 
     dispatch(
       addAlbums([
-        { userId: currentUser.id, id: currentAlbumId(), title: newAlbumTitle },
+        { userId: currentUser.id, id: newAlbumId(), title: newAlbumTitle },
       ])
     );
-  }, [dispatch, currentUser, currentAlbumId]);
+  }, [dispatch, currentUser, newAlbumId]);
 
-  if (!isModalVisible) {
-    return null;
-  } else {
+  if (!photos.length) {
     return (
       <div className={style.modalOverlay}>
         <div className={style.modalWrap}>
           <div className={style.modalHead}>
-            <h5>Add info about new </h5>
+            <h5>Add info about new album</h5>
 
             <button className={style.modalCloseBtn} onClick={cancel}></button>
           </div>
@@ -64,7 +63,7 @@ const ModalAlbum = () => {
               <span>Title: </span>
               <input type="text" id="new-album-title"></input>
               <span className={style.modalContentError} id="error">
-                Title cannot be an empty
+                Title cannot be empty
               </span>
             </p>
           </div>
@@ -78,8 +77,10 @@ const ModalAlbum = () => {
               type="submit"
               className={style.acceptBtn}
               onClick={() => {
-                accept();
-                addItemToAlbum();
+                acceptAlbum();
+                if (!isNewAlbumTitleEmpty()) {
+                  addItemToAlbum();
+                }
               }}
             >
               {' '}
@@ -92,4 +93,4 @@ const ModalAlbum = () => {
   }
 };
 
-export default ModalAlbum;
+export default Album;

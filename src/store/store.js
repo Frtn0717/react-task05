@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 const ADD_USER_TYPE = 'ADD_USER_TYPE';
 const ADD_ALBUMS_TYPE = 'ADD_ALBUM_TYPE';
 const ADD_PHOTOS_TYPE = 'ADD_PHOTO_TYPE';
+const CLEAR_PHOTOS_TYPE = 'CLEAR_PHOTOS_TYPE';
 const ADD_ACTIVE_ALBUM = 'ADD_ACTIVE_ALBUM';
 const OPEN_MODAL = 'OPEN_MODAL';
 const CLOSE_MODAL = 'CLOSE_MODAL';
@@ -35,6 +36,13 @@ export function addActiveAlbum(payload) {
 export function addPhotos(payload) {
   return {
     type: ADD_PHOTOS_TYPE,
+    payload,
+  };
+}
+
+export function clearPhotos(payload) {
+  return {
+    type: CLEAR_PHOTOS_TYPE,
     payload,
   };
 }
@@ -94,6 +102,8 @@ function photos(state = initialState.photos, action) {
   switch (action.type) {
     case ADD_PHOTOS_TYPE:
       return [...state, ...action.payload];
+    case CLEAR_PHOTOS_TYPE:
+      return [];
     default:
       return state;
   }

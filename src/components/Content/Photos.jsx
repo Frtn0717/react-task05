@@ -2,7 +2,7 @@ import style from './photos-style.module.scss';
 import React, { useEffect, useCallback } from 'react';
 import { fetchPhotos } from '../../actions/fetch-photos';
 import { useDispatch, useSelector } from 'react-redux';
-import { addActiveAlbum, addPhotos } from '../../store/store.js';
+import { addActiveAlbum, clearPhotos, openModal } from '../../store/store.js';
 
 const Photos = () => {
   const dispatch = useDispatch();
@@ -17,22 +17,8 @@ const Photos = () => {
 
   const backToAlbums = useCallback(() => {
     dispatch(addActiveAlbum(null));
+    dispatch(clearPhotos([]));
   }, [dispatch]);
-
-  const addItemToPhoto = () => {
-    dispatch(
-      addPhotos([
-        {
-          // hardcoded photo
-          albumId: 29,
-          id: 777,
-          title: 'Waterfall-Photo',
-          url: 'https://via.placeholder.com/600/c3eecd',
-          thumbnailUrl: 'https://via.placeholder.com/150/c3eecd',
-        },
-      ])
-    );
-  };
 
   let Key = 1;
 
@@ -63,7 +49,12 @@ const Photos = () => {
       <button className={style.backBtn} onClick={backToAlbums}>
         Back
       </button>
-      <button className={style.backBtn} onClick={addItemToPhoto}>
+      <button
+        className={style.backBtn}
+        onClick={() => {
+          dispatch(openModal(true));
+        }}
+      >
         Add photo
       </button>
     </section>

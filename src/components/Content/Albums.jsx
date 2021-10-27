@@ -1,23 +1,18 @@
 import style from './content-style.module.scss';
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { fetchAlbums } from '../../actions/fetch-albums';
 import { useDispatch, useSelector } from 'react-redux';
-import { addActiveAlbum, addAlbums, openModal } from '../../store/store.js';
+import { addActiveAlbum, openModal } from '../../store/store.js';
 
 const Albums = () => {
   const dispatch = useDispatch();
   const albums = useSelector(({ albums }) => albums);
-  const isModalVisible = useSelector(({ modal }) => modal);
 
   useEffect(() => {
     if (albums.length === 0) {
       dispatch(fetchAlbums());
     }
   }, [dispatch, albums]);
-
-  // const addItemToAlbum = useCallback(() => {
-  //   dispatch(addAlbums([{ userId: 21, id: 23, title: 'Waterfall' }])); // hardcoded album
-  // }, [dispatch]);
 
   let key = 1;
 
