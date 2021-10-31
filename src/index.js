@@ -4,12 +4,15 @@ import { Provider } from 'react-redux';
 import App from './components/app.jsx';
 import { store } from './store/store.js';
 import './index.scss';
+import ErrorBoundary from './error-boundary/Error-baundary.jsx';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
