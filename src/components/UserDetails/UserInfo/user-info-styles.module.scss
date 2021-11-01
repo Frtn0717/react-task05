@@ -1,0 +1,17 @@
+.info {
+  width: 70%;
+  padding: 0.3rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin: 0.2rem 0;
+  }
+}
